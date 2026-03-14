@@ -14,7 +14,17 @@ const Joystick: React.FC<JoystickProps> = ({ onMove, color = "white", side }) =>
   const [active, setActive] = useState(false);
   const touchId = useRef<number | null>(null);
   const center = useRef({ x: 0, y: 0 });
-  const maxRadius = 50; // Max distance the stick can move
+  const [maxRadius, setMaxRadius] = useState(35);
+
+  useEffect(() => {
+    const updateRadius = () => {
+      const vmin = Math.min(window.innerWidth, window.innerHeight);
+      setMaxRadius((vmin * 10) / 100); // 10vmin radius for a 20vmin container
+    };
+    updateRadius();
+    window.addEventListener('resize', updateRadius);
+    return () => window.removeEventListener('resize', updateRadius);
+  }, []);
 
   const handleStart = (e: React.TouchEvent) => {
     // Prevent default to stop scrolling
@@ -76,7 +86,7 @@ const Joystick: React.FC<JoystickProps> = ({ onMove, color = "white", side }) =>
   return (
     <div 
       ref={containerRef}
-      className={`absolute bottom-8 ${side === 'left' ? 'left-8' : 'right-8'} w-32 h-32 rounded-full bg-black/20 backdrop-blur-sm border-2 border-white/10 touch-none flex items-center justify-center z-50`}
+      className={`absolute bottom-[4vmin] ${side === 'left' ? 'left-[4vmin]' : 'right-[4vmin]'} w-[20vmin] h-[20vmin] rounded-full bg-black/20 backdrop-blur-sm border-[0.5vmin] border-white/10 touch-none flex items-center justify-center z-50`}
       onTouchStart={handleStart}
       onTouchMove={handleMove}
       onTouchEnd={handleEnd}
@@ -85,7 +95,7 @@ const Joystick: React.FC<JoystickProps> = ({ onMove, color = "white", side }) =>
     >
       <div 
         ref={stickRef}
-        className="w-12 h-12 rounded-full shadow-lg absolute pointer-events-none transition-transform duration-75 ease-linear"
+        className="w-[8vmin] h-[8vmin] rounded-full shadow-lg absolute pointer-events-none transition-transform duration-75 ease-linear"
         style={{ backgroundColor: active ? `${color}` : 'rgba(255,255,255,0.5)' }}
       />
     </div>
@@ -113,11 +123,11 @@ export const MobileControls: React.FC<MobileControlsProps> = ({ onMoveChange, on
 
       {/* Interaction Button (Hand) */}
       <button 
-        className="absolute bottom-40 right-8 w-20 h-20 bg-white/80 rounded-full border-4 border-[#5d4037] shadow-xl flex items-center justify-center active:scale-95 transition-transform pointer-events-auto z-50"
+        className="absolute bottom-[28vmin] right-[4vmin] w-[16vmin] h-[16vmin] bg-white/80 rounded-full border-[1vmin] border-[#5d4037] shadow-xl flex items-center justify-center active:scale-95 transition-transform pointer-events-auto z-50"
         onTouchStart={(e) => { e.preventDefault(); onInteract(); }}
         onClick={(e) => { e.preventDefault(); onInteract(); }}
       >
-        <span className="text-4xl">🖐️</span>
+        <span className="text-[8vmin]">🖐️</span>
       </button>
 
       {/* Instructions Overlay for Mobile */}

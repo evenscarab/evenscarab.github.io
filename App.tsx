@@ -1664,23 +1664,23 @@ const App: React.FC = () => {
           {currentRadioTrack && gameState === GameState.FREE_ROAM && !isRadioOpen && !showCookingPrompt && (
              <div 
                 onClick={() => setIsRadioOpen(true)}
-                className="absolute top-8 right-8 pointer-events-auto bg-black/60 backdrop-blur-md px-5 py-3 rounded-xl flex flex-col items-end animate-fade-in group hover:bg-black/80 transition-colors cursor-pointer border border-white/10 shadow-lg z-50"
+                className="absolute top-[20vmin] right-[4vmin] pointer-events-auto bg-black/60 backdrop-blur-md px-[3vmin] py-[2vmin] rounded-[2vmin] flex flex-col items-end animate-fade-in group hover:bg-black/80 transition-colors cursor-pointer border border-white/10 shadow-lg z-50"
              >
-                <span className="text-green-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2 mb-1">
-                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_#22c55e]"></div>
+                <span className="text-green-400 text-[2vmin] font-bold uppercase tracking-widest flex items-center gap-[1vmin] mb-[0.5vmin]">
+                    <div className="w-[1.5vmin] h-[1.5vmin] rounded-full bg-green-500 animate-pulse shadow-[0_0_1vmin_#22c55e]"></div>
                     {t.radio_playing}
                 </span>
-                <span className="text-white font-bold text-base border-t border-white/10 pt-1">
+                <span className="text-white font-bold text-[3vmin] border-t border-white/10 pt-[0.5vmin]">
                      {currentRadioTrack.title}
                 </span>
              </div>
           )}
 
-          <div className="absolute bottom-6 right-6 z-20 flex items-end gap-4 pointer-events-auto">
+          <div className="absolute bottom-[4vmin] right-[4vmin] z-20 flex items-end gap-[2vmin] pointer-events-auto">
             {/* HIDE MUTE BUTTON ON MOBILE IF CONTROLS ARE IN THE WAY, OR MOVE IT UP */}
             <button 
                 onClick={toggleMusic}
-                className={`w-12 h-12 mb-6 rounded-full bg-white/80 backdrop-blur-sm shadow-lg flex items-center justify-center hover:bg-white hover:scale-110 transition-all text-[#5d4037] ${isMobile ? 'absolute top-[-500px]' : ''}`} // Hacky hide on mobile for now or reposition
+                className={`w-[10vmin] h-[10vmin] mb-[2vmin] rounded-full bg-white/80 backdrop-blur-sm shadow-lg flex items-center justify-center hover:bg-white hover:scale-110 transition-all text-[#5d4037] ${isMobile ? 'absolute top-[-500px]' : ''}`} // Hacky hide on mobile for now or reposition
                 style={isMobile ? { top: '-500px', opacity: 0 } : {}}
             >
                 {isMusicMuted ? <MusicIconOff /> : <MusicIconOn />}
@@ -1688,21 +1688,21 @@ const App: React.FC = () => {
             {/* HIDE HUD IN FREE ROAM OR BOOK MODE */}
             {!isRoamingState && !isBookOpen && (
                 <>
-                <div className={`flex flex-col items-center justify-center w-28 h-28 rounded-full border-4 border-[#5d4037] shadow-[0_6px_0_rgba(0,0,0,0.2)] transition-colors duration-500 ${timeLeft < 20 ? 'bg-[#ff9aa2] animate-pulse' : 'bg-[#fff8e7]'} ${isMobile ? 'scale-75 origin-bottom-right' : ''}`}>
-                <div className="text-[#5d4037] mb-[-5px]">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <div className={`flex flex-col items-center justify-center w-[20vmin] h-[20vmin] rounded-full border-[0.8vmin] border-[#5d4037] shadow-[0_1vmin_0_rgba(0,0,0,0.2)] transition-colors duration-500 ${timeLeft < 20 ? 'bg-[#ff9aa2] animate-pulse' : 'bg-[#fff8e7]'}`}>
+                <div className="text-[#5d4037] mb-[-1vmin]">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-[6vmin] w-[6vmin]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
-                <span className="text-4xl font-bold text-[#5d4037] tabular-nums">{timeLeft}</span>
-                <span className="text-xs font-bold text-[#8d6e63] uppercase">{t.hud_sec}</span>
+                <span className="text-[6vmin] font-bold text-[#5d4037] tabular-nums leading-none">{timeLeft}</span>
+                <span className="text-[2vmin] font-bold text-[#8d6e63] uppercase">{t.hud_sec}</span>
                 </div>
-                <div className={`bg-[#b8e0d2] border-4 border-[#5d4037] rounded-3xl px-6 py-3 h-24 flex flex-col items-center justify-center shadow-[0_6px_0_rgba(0,0,0,0.2)] min-w-[140px] ${isMobile ? 'scale-75 origin-bottom-right' : ''}`}>
-                <div className="flex items-center gap-2 mb-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-[#5d4037]" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clipRule="evenodd" /></svg>
-                    <span className="text-sm font-bold text-[#4a7c68] uppercase">{t.hud_cleaned}</span>
+                <div className={`bg-[#b8e0d2] border-[0.8vmin] border-[#5d4037] rounded-[4vmin] px-[4vmin] py-[2vmin] h-[18vmin] flex flex-col items-center justify-center shadow-[0_1vmin_0_rgba(0,0,0,0.2)] min-w-[24vmin]`}>
+                <div className="flex items-center gap-[1vmin] mb-[0.5vmin]">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-[4vmin] w-[4vmin] text-[#5d4037]" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clipRule="evenodd" /></svg>
+                    <span className="text-[2.5vmin] font-bold text-[#4a7c68] uppercase">{t.hud_cleaned}</span>
                 </div>
-                <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-bold text-[#ffffff] drop-shadow-[0_2px_0_rgba(0,0,0,0.2)] tabular-nums" style={{ WebkitTextStroke: '1.5px #4a7c68', paintOrder: 'stroke fill' }}>{score}</span>
-                    <span className="text-2xl font-bold text-[#5d4037]">/ {totalItems}</span>
+                <div className="flex items-baseline gap-[1vmin]">
+                    <span className="text-[6vmin] font-bold text-[#ffffff] drop-shadow-[0_0.5vmin_0_rgba(0,0,0,0.2)] tabular-nums leading-none" style={{ WebkitTextStroke: '0.3vmin #4a7c68', paintOrder: 'stroke fill' }}>{score}</span>
+                    <span className="text-[4vmin] font-bold text-[#5d4037] leading-none">/ {totalItems}</span>
                 </div>
                 </div>
                 </>
@@ -1713,9 +1713,9 @@ const App: React.FC = () => {
           {(isMobile || isGamepadConnected) && shouldCaptureCursor && (
              <button 
                onClick={handleBackToPause}
-               className="absolute top-8 right-8 pointer-events-auto w-12 h-12 bg-white/80 rounded-full border-4 border-[#5d4037] flex items-center justify-center z-50"
+               className="absolute top-[4vmin] right-[4vmin] pointer-events-auto w-[12vmin] h-[12vmin] bg-white/80 rounded-full border-[0.8vmin] border-[#5d4037] flex items-center justify-center z-50"
              >
-                <span className="text-2xl">⏸️</span>
+                <span className="text-[5vmin]">⏸️</span>
              </button>
           )}
 
@@ -1760,92 +1760,98 @@ const App: React.FC = () => {
 
       {/* PAUSE MENU OVERLAY */}
       {gameState === GameState.PAUSED && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm pointer-events-auto">
-           <div className="bg-[#fff8e7] rounded-[2.5rem] border-8 border-[#d7ccc8] p-10 min-w-[320px] text-center shadow-2xl">
-              <h2 className="text-4xl font-black text-[#5d4037] mb-8 tracking-widest">{t.pause_title}</h2>
-              <div className="flex flex-col gap-4">
-                 {pauseMenuActions.map((item, idx) => (
-                    <button 
-                        key={idx}
-                        onClick={item.action} 
-                        className={`px-8 py-3 text-xl font-bold rounded-2xl border-4 shadow-md active:translate-y-1 transition-all
-                           ${getFocusClass(idx)}
-                           ${idx === 0 ? 'bg-[#b5ead7] text-[#4a7c68] border-[#88bba6]' : 
-                             idx === 1 ? 'bg-[#ffdac1] text-[#b38061] border-[#dcbba3]' : 
-                             idx === 2 ? 'bg-[#fdf6e3] text-[#d4a373] border-[#e8d5b5]' : 
-                             idx === 3 ? 'bg-[#c7ceea] text-[#6a7b9c] border-[#9aa6c4]' : 
-                             'bg-[#ff9aa2] text-[#c25e66] border-[#e57373]'}
-                        `}
-                    >
-                        {item.label}
-                    </button>
-                 ))}
-              </div>
-           </div>
+        <div className="absolute inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm pointer-events-auto">
+          <div className="min-h-full flex items-center justify-center p-[4vmin]">
+             <div className="bg-[#fff8e7] rounded-[4vmin] border-[1vmin] border-[#d7ccc8] p-[6vmin] w-[90vw] max-w-[70vmin] text-center shadow-2xl">
+                <h2 className="text-[6vmin] font-black text-[#5d4037] mb-[6vmin] tracking-widest">{t.pause_title}</h2>
+                <div className="flex flex-col gap-[3vmin]">
+                   {pauseMenuActions.map((item, idx) => (
+                      <button 
+                          key={idx}
+                          onClick={item.action} 
+                          className={`px-[6vmin] py-[2.5vmin] text-[3.5vmin] font-bold rounded-[3vmin] border-[0.8vmin] shadow-md active:translate-y-1 transition-all
+                             ${getFocusClass(idx)}
+                             ${idx === 0 ? 'bg-[#b5ead7] text-[#4a7c68] border-[#88bba6]' : 
+                               idx === 1 ? 'bg-[#ffdac1] text-[#b38061] border-[#dcbba3]' : 
+                               idx === 2 ? 'bg-[#fdf6e3] text-[#d4a373] border-[#e8d5b5]' : 
+                               idx === 3 ? 'bg-[#c7ceea] text-[#6a7b9c] border-[#9aa6c4]' : 
+                               'bg-[#ff9aa2] text-[#c25e66] border-[#e57373]'}
+                          `}
+                      >
+                          {item.label}
+                      </button>
+                   ))}
+                </div>
+             </div>
+          </div>
         </div>
       )}
 
       {/* LEVEL SELECT SCREEN */}
       {gameState === GameState.LEVEL_SELECT && (
-        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm pointer-events-auto">
-          <div className="bg-[#fff8e7] rounded-[2.5rem] border-8 border-[#d7ccc8] p-10 max-w-3xl w-full text-center shadow-2xl">
-             <h2 className="text-4xl font-black text-[#5d4037] mb-8 tracking-widest">{t.level_select_title}</h2>
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-               {LEVELS.map((level, idx) => (
-                 <button 
-                  key={level.id} 
-                  onClick={(e) => handleSelectLevel(e, idx)}
-                  className={`p-6 rounded-2xl border-4 shadow-md transition-all active:scale-95 flex flex-col items-center gap-2 group
-                    ${idx === currentLevelIdx ? 'bg-[#ffdac1] border-[#dcbba3]' : 'bg-white border-[#e5e7eb] hover:border-[#b5ead7]'}
-                    ${getFocusClass(idx)}
-                  `}
-                 >
-                    <div className="text-4xl mb-2 group-hover:scale-110 transition-transform">
-                      {level.timeOfDay === 'night' ? '🌙' : (level.timeOfDay === 'sunset' ? '🌅' : '☀️')}
-                    </div>
-                    <span className="text-xl font-black text-[#5d4037]">{t[level.titleKey]}</span>
-                 </button>
-               ))}
-             </div>
-             <button 
-                onClick={handleBackToPause} 
-                className={`px-8 py-3 bg-[#e5e7eb] text-[#5d4037] text-xl font-bold rounded-2xl border-4 border-[#d1d5db] shadow-md active:translate-y-1 transition-all ${getFocusClass(LEVELS.length)}`}
-             >
-                {t.back}
-             </button>
+        <div className="absolute inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm pointer-events-auto">
+          <div className="min-h-full flex items-center justify-center p-[4vmin]">
+            <div className="bg-[#fff8e7] rounded-[4vmin] border-[1vmin] border-[#d7ccc8] p-[6vmin] w-[90vw] max-w-[100vmin] text-center shadow-2xl">
+               <h2 className="text-[6vmin] font-black text-[#5d4037] mb-[6vmin] tracking-widest">{t.level_select_title}</h2>
+               <div className="grid grid-cols-1 md:grid-cols-3 gap-[3vmin] mb-[6vmin]">
+                 {LEVELS.map((level, idx) => (
+                   <button 
+                    key={level.id} 
+                    onClick={(e) => handleSelectLevel(e, idx)}
+                    className={`p-[4vmin] rounded-[3vmin] border-[0.8vmin] shadow-md transition-all active:scale-95 flex flex-col items-center gap-[2vmin] group
+                      ${idx === currentLevelIdx ? 'bg-[#ffdac1] border-[#dcbba3]' : 'bg-white border-[#e5e7eb] hover:border-[#b5ead7]'}
+                      ${getFocusClass(idx)}
+                    `}
+                   >
+                      <div className="text-[6vmin] mb-[1vmin] group-hover:scale-110 transition-transform">
+                        {level.timeOfDay === 'night' ? '🌙' : (level.timeOfDay === 'sunset' ? '🌅' : '☀️')}
+                      </div>
+                      <span className="text-[3vmin] font-black text-[#5d4037]">{t[level.titleKey]}</span>
+                   </button>
+                 ))}
+               </div>
+               <button 
+                  onClick={handleBackToPause} 
+                  className={`px-[6vmin] py-[2.5vmin] bg-[#e5e7eb] text-[#5d4037] text-[3.5vmin] font-bold rounded-[3vmin] border-[0.8vmin] border-[#d1d5db] shadow-md active:translate-y-1 transition-all ${getFocusClass(LEVELS.length)}`}
+               >
+                  {t.back}
+               </button>
+            </div>
           </div>
         </div>
       )}
 
       {/* STORY MODE OVERLAY */}
       {gameState === GameState.STORY && (
-        <div className="absolute inset-0 z-40 flex items-center justify-center bg-[#5d4037]/90 backdrop-blur-sm p-[4vmin] pointer-events-auto">
-           <div className="bg-[#fff8e7] rounded-[4vmin] border-[1vmin] border-[#d7ccc8] p-[6vmin] w-[90vw] max-w-[90vmin] text-center shadow-2xl transform rotate-1">
-              <h2 className="text-[6vmin] font-black text-[#5d4037] mb-[4vmin]">{t[LEVELS[currentLevelIdx].titleKey]}</h2>
-              <p className="text-[3.5vmin] text-[#8d6e63] font-bold whitespace-pre-line mb-[5vmin] leading-relaxed">
-                {t[`story_l${LEVELS[currentLevelIdx].id}`]}
-              </p>
-              <button 
-                onClick={startLevel}
-                className={`px-[8vmin] py-[3vmin] bg-[#b5ead7] hover:bg-[#a3d9c5] text-[#4a7c68] text-[4vmin] font-black rounded-full border-b-[1vmin] border-[#88bba6] active:border-b-0 active:translate-y-2 transition-all shadow-lg ${getFocusClass(0)}`}
-              >
-                {t.story_continue_btn}
-              </button>
-           </div>
+        <div className="absolute inset-0 z-40 overflow-y-auto bg-[#5d4037]/90 backdrop-blur-sm pointer-events-auto">
+          <div className="min-h-full flex items-center justify-center p-[4vmin]">
+             <div className="bg-[#fff8e7] rounded-[4vmin] border-[1vmin] border-[#d7ccc8] p-[6vmin] w-[90vw] max-w-[90vmin] text-center shadow-2xl transform rotate-1">
+                <h2 className="text-[6vmin] font-black text-[#5d4037] mb-[4vmin]">{t[LEVELS[currentLevelIdx].titleKey]}</h2>
+                <p className="text-[3.5vmin] text-[#8d6e63] font-bold whitespace-pre-line mb-[5vmin] leading-relaxed">
+                  {t[`story_l${LEVELS[currentLevelIdx].id}`]}
+                </p>
+                <button 
+                  onClick={startLevel}
+                  className={`px-[8vmin] py-[3vmin] bg-[#b5ead7] hover:bg-[#a3d9c5] text-[#4a7c68] text-[4vmin] font-black rounded-full border-b-[1vmin] border-[#88bba6] active:border-b-0 active:translate-y-2 transition-all shadow-lg ${getFocusClass(0)}`}
+                >
+                  {t.story_continue_btn}
+                </button>
+             </div>
+          </div>
         </div>
       )}
 
       {/* MAIN MENU OVERLAY */}
       {gameState === GameState.MENU && (
-        <div className="absolute inset-0 z-30 flex items-center justify-center bg-[#fdf6e3]/80 backdrop-blur-sm overflow-hidden pointer-events-auto">
-           {/* Removed Background emojis */}
-          <div className="relative flex flex-col items-center gap-[4vmin] w-full p-[4vmin]">
-            <div className="z-20 transform hover:scale-105 transition-transform duration-500 pt-[4vmin]">
-               <CozyLogo scale={proportionalScale * 1.8} />
-            </div>
-            
-            {/* SUBMENU FOR FREE ROAM OR MAIN */}
-            <div className="bg-white/90 backdrop-blur rounded-[4vmin] border-[1vmin] border-[#e2f0cb] p-[5vmin] shadow-[0_20px_50px_rgba(93,64,55,0.15)] text-center flex flex-col items-center gap-[3vmin] w-[90vw] max-w-[80vmin] z-10 transform rotate-1 mt-[3vmin] transition-all duration-300">
+        <div className="absolute inset-0 z-30 overflow-y-auto bg-[#fdf6e3]/80 backdrop-blur-sm pointer-events-auto">
+          <div className="min-h-full flex items-center justify-center p-[4vmin]">
+            <div className="relative flex flex-col items-center gap-[4vmin] w-full max-w-4xl">
+              <div className="z-20 transform hover:scale-105 transition-transform duration-500">
+                 <CozyLogo scale={proportionalScale * 1.8} />
+              </div>
+              
+              {/* SUBMENU FOR FREE ROAM OR MAIN */}
+              <div className="bg-white/90 backdrop-blur rounded-[4vmin] border-[1vmin] border-[#e2f0cb] p-[5vmin] shadow-[0_20px_50px_rgba(93,64,55,0.15)] text-center flex flex-col items-center gap-[3vmin] w-[90vw] max-w-[80vmin] z-10 transform rotate-1 transition-all duration-300">
                {!showRoamSelect ? (
                  <>
                     <div className="bg-[#fff8e7] p-[4vmin] rounded-[3vmin] border-dashed border-2 border-[#d7ccc8] w-full">
@@ -1892,30 +1898,33 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
+        </div>
       )}
 
       {/* End Screen Overlay */}
       {(gameState === GameState.WON || gameState === GameState.LOST) && (
-        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md pointer-events-auto p-[4vmin]">
-          <div className={`p-[8vmin] rounded-[5vmin] border-[1vmin] text-center shadow-2xl transform ${gameState === GameState.WON ? 'bg-[#d8f3dc] border-[#95d5b2] rotate-1' : 'bg-[#fad2e1] border-[#f28482] -rotate-1'} w-[90vw] max-w-[80vmin]`}>
-            <h1 className={`text-[8vmin] font-black mb-[4vmin] ${gameState === GameState.WON ? 'text-[#40916c]' : 'text-[#e5383b]'} drop-shadow-sm`}>
-              {gameState === GameState.WON ? (isGameFinished ? t.win_game_title : t.win_title) : t.lose_title}
-            </h1>
-            <div className="flex flex-col items-center mb-[6vmin]">
-              <span className="text-[#5d4037] text-[3.5vmin] font-bold mb-[2vmin]">{t.score_label}</span>
-              <div className="bg-white px-[6vmin] py-[3vmin] rounded-[3vmin] border-[0.8vmin] border-[#5d4037] shadow-inner">
-                 <span className="text-[7vmin] font-black text-[#5d4037]">{score} / {totalItems}</span>
+        <div className="absolute inset-0 z-30 overflow-y-auto bg-black/80 backdrop-blur-md pointer-events-auto">
+          <div className="min-h-full flex items-center justify-center p-[4vmin]">
+            <div className={`p-[8vmin] rounded-[5vmin] border-[1vmin] text-center shadow-2xl transform ${gameState === GameState.WON ? 'bg-[#d8f3dc] border-[#95d5b2] rotate-1' : 'bg-[#fad2e1] border-[#f28482] -rotate-1'} w-[90vw] max-w-[80vmin]`}>
+              <h1 className={`text-[8vmin] font-black mb-[4vmin] ${gameState === GameState.WON ? 'text-[#40916c]' : 'text-[#e5383b]'} drop-shadow-sm`}>
+                {gameState === GameState.WON ? (isGameFinished ? t.win_game_title : t.win_title) : t.lose_title}
+              </h1>
+              <div className="flex flex-col items-center mb-[6vmin]">
+                <span className="text-[#5d4037] text-[3.5vmin] font-bold mb-[2vmin]">{t.score_label}</span>
+                <div className="bg-white px-[6vmin] py-[3vmin] rounded-[3vmin] border-[0.8vmin] border-[#5d4037] shadow-inner">
+                   <span className="text-[7vmin] font-black text-[#5d4037]">{score} / {totalItems}</span>
+                </div>
               </div>
+              <button 
+                onClick={handleLevelCompleteOrRetry}
+                className={`px-[8vmin] py-[3vmin] bg-white text-[#5d4037] hover:bg-[#fdf6e3] text-[4vmin] font-black rounded-full border-[0.8vmin] border-[#5d4037] shadow-[0_6px_0_#5d4037] active:shadow-none active:translate-y-1.5 transition-all ${getFocusClass(0)}`}
+              >
+                {gameState === GameState.WON 
+                   ? (isGameFinished ? t.retry_game_win : t.retry_win) 
+                   : t.retry_lose
+                }
+              </button>
             </div>
-            <button 
-              onClick={handleLevelCompleteOrRetry}
-              className={`px-[8vmin] py-[3vmin] bg-white text-[#5d4037] hover:bg-[#fdf6e3] text-[4vmin] font-black rounded-full border-[0.8vmin] border-[#5d4037] shadow-[0_6px_0_#5d4037] active:shadow-none active:translate-y-1.5 transition-all ${getFocusClass(0)}`}
-            >
-              {gameState === GameState.WON 
-                 ? (isGameFinished ? t.retry_game_win : t.retry_win) 
-                 : t.retry_lose
-              }
-            </button>
           </div>
         </div>
       )}
