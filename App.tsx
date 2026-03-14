@@ -8,6 +8,7 @@ import { GameState, ItemData, Language } from './types';
 import { LEVELS } from './constants';
 import { audioManager } from './utils/audio';
 import { MobileControls } from './components/MobileControls';
+import { Loader } from '@react-three/drei';
 
 // --- LAZY LOADING SCENES ---
 // This ensures that the heavy 3D code for a scene is only loaded when needed,
@@ -1909,6 +1910,14 @@ const App: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* 3D Asset Loader */}
+      <Loader 
+        containerStyles={{ background: '#1a1a1a' }}
+        innerStyles={{ background: 'rgba(255, 255, 255, 0.2)', width: '300px', height: '10px', borderRadius: '5px' }}
+        barStyles={{ background: '#ff9aa2', height: '10px', borderRadius: '5px' }}
+        dataInterpolation={(p) => `Cargando modelos 3D... ${p.toFixed(0)}%`}
+      />
     </div>
   );
 };

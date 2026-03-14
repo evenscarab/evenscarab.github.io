@@ -56,11 +56,25 @@
         border-radius: 50%;
         transform: translate(-50%, -50%);
       }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.6; }
+        50% { opacity: 1; }
+      }
     </style>
     <link rel="stylesheet" href="/index.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="initial-loader" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #1a1a1a; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; color: white; font-family: 'Fredoka', sans-serif;">
+        <div style="width: 50px; height: 50px; border: 5px solid rgba(255,255,255,0.2); border-top-color: #ff9aa2; border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px;"></div>
+        <h2 style="margin: 0 0 10px 0; font-size: 24px; letter-spacing: 1px;">Cargando el juego...</h2>
+        <p style="margin: 0; color: #aaa; font-size: 16px; animation: pulse 1.5s ease-in-out infinite;">Preparando el desorden de Ceci</p>
+      </div>
+    </div>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
