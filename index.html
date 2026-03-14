@@ -2,7 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover" />
+    
+    <!-- iOS PWA Configuration -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Limpia la pieza" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    
     <title>Limpia la pieza de Ceci</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,8 +24,14 @@
         overflow: hidden;
         background-color: #1a1a1a;
         user-select: none;
+        -webkit-user-select: none; /* Safari specific */
         font-family: 'Fredoka', sans-serif;
+        
+        /* Prevent elastic scrolling/bouncing on iOS */
+        overscroll-behavior: none;
+        touch-action: none;
       }
+      
       #crosshair {
         position: absolute;
         top: 50%;
@@ -44,7 +57,8 @@
         transform: translate(-50%, -50%);
       }
     </style>
-    <script type="module" crossorigin src="./assets/index-BjMqSUyd.js"></script>
+    <link rel="stylesheet" href="/index.css">
+    <script type="module" crossorigin src="./assets/index-CdsN841G.js"></script>
   </head>
   <body>
     <div id="root"></div>
