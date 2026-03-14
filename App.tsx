@@ -1461,42 +1461,42 @@ const App: React.FC = () => {
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md pointer-events-auto">
            {/* ... (Existing Radio Code) ... */}
            {/* Main Container - Wider for split view */}
-           <div className="bg-[#1f2937] w-[900px] h-[550px] rounded-3xl overflow-hidden border-4 border-[#374151] shadow-[0_30px_70px_rgba(0,0,0,0.6)] relative flex">
+           <div className="bg-[#1f2937] w-[95vw] md:w-[80vw] max-w-[900px] h-[90dvh] md:h-[80dvh] max-h-[600px] rounded-3xl overflow-hidden border-4 border-[#374151] shadow-[0_30px_70px_rgba(0,0,0,0.6)] relative flex flex-col md:flex-row">
               
               {/* CLOSE BUTTON */}
               <button 
                 onClick={() => setIsRadioOpen(false)}
-                className={`absolute top-4 right-4 z-50 bg-red-500 hover:bg-red-600 text-white w-10 h-10 rounded-full shadow-lg border-2 border-white flex items-center justify-center transition-transform hover:scale-110 ${getFocusClass(Object.keys(RADIO_TRACKS).length + 1)}`}
+                className={`absolute top-[2vmin] right-[2vmin] z-50 bg-red-500 hover:bg-red-600 text-white w-[8vmin] h-[8vmin] md:w-[40px] md:h-[40px] rounded-full shadow-lg border-2 border-white flex items-center justify-center transition-transform hover:scale-110 ${getFocusClass(Object.keys(RADIO_TRACKS).length + 1)}`}
               >
-                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+                 <svg xmlns="http://www.w3.org/2000/svg" className="h-[4vmin] w-[4vmin] md:w-[24px] md:h-[24px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
               </button>
 
               {/* LEFT SIDE: LARGE ALBUM ART & VINYL COMPOSITION */}
-              <div className="w-[55%] relative flex flex-col items-center justify-center overflow-hidden bg-[#111827]">
+              <div className="w-full md:w-[55%] h-[45%] md:h-full relative flex flex-col items-center justify-center overflow-hidden bg-[#111827]">
                   {/* Atmospheric Background - Changes color based on track */}
                   <div className={`absolute inset-0 opacity-40 transition-all duration-1000 bg-gradient-to-br ${currentRadioTrack ? currentRadioTrack.colorFrom : 'from-gray-800'} ${currentRadioTrack ? currentRadioTrack.colorTo : 'to-gray-900'} blur-xl scale-125`}></div>
                   <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
                   
                   {/* THE COMPOSITION */}
-                  <div className="relative z-10 w-full h-full flex items-center justify-center pl-8 pr-16 perspective-1000">
+                  <div className="relative z-10 w-full h-full flex items-center justify-center pl-[4vmin] pr-[8vmin] perspective-1000">
                       
                       {/* 1. VINYL RECORD (Behind the cover, spins out) */}
-                      <div className={`absolute w-[320px] h-[320px] rounded-full bg-[#111] shadow-xl flex items-center justify-center transition-transform duration-1000 ease-in-out border-8 border-[#222] ${currentRadioTrack ? 'translate-x-24 rotate-12' : 'translate-x-0 rotate-0'}`}>
+                      <div className={`absolute w-[35vmin] h-[35vmin] md:w-[40vmin] md:h-[40vmin] max-w-[320px] max-h-[320px] rounded-full bg-[#111] shadow-xl flex items-center justify-center transition-transform duration-1000 ease-in-out border-[1vmin] md:border-[8px] border-[#222] ${currentRadioTrack ? 'translate-x-[10vmin] md:translate-x-24 rotate-12' : 'translate-x-0 rotate-0'}`}>
                           {/* Grooves */}
                           <div className="absolute inset-0 rounded-full opacity-30 bg-[repeating-radial-gradient(#222_0px,#222_2px,#111_3px,#111_4px)]"></div>
                           <div className={`w-full h-full rounded-full flex items-center justify-center ${currentRadioTrack ? 'animate-spin-slow' : ''}`}>
-                             <div className={`w-32 h-32 rounded-full border-4 border-black bg-gradient-to-tr ${currentRadioTrack ? currentRadioTrack.colorFrom : 'from-gray-500'} ${currentRadioTrack ? currentRadioTrack.colorTo : 'to-gray-600'} flex items-center justify-center shadow-inner overflow-hidden relative`}>
+                             <div className={`w-[12vmin] h-[12vmin] md:w-[15vmin] md:h-[15vmin] max-w-[128px] max-h-[128px] rounded-full border-4 border-black bg-gradient-to-tr ${currentRadioTrack ? currentRadioTrack.colorFrom : 'from-gray-500'} ${currentRadioTrack ? currentRadioTrack.colorTo : 'to-gray-600'} flex items-center justify-center shadow-inner overflow-hidden relative`}>
                                  {/* Vinyl Center Image */}
                                  {currentRadioTrack && (
                                      <img src={currentRadioTrack.cover} className="absolute inset-0 w-full h-full object-cover opacity-70" alt="vinyl center"/>
                                  )}
-                                 <div className="w-3 h-3 bg-black rounded-full z-10"></div>
+                                 <div className="w-[1.5vmin] h-[1.5vmin] md:w-[12px] md:h-[12px] bg-black rounded-full z-10"></div>
                              </div>
                           </div>
                       </div>
 
                       {/* 2. ALBUM COVER (Front, Static) */}
-                      <div className={`relative w-[340px] h-[340px] rounded-lg shadow-2xl transition-all duration-700 bg-gray-800 flex items-center justify-center z-20 border-t border-l border-white/20 overflow-hidden ${currentRadioTrack ? 'scale-100 rotate-[-2deg]' : 'scale-95 grayscale opacity-80'}`}>
+                      <div className={`relative w-[40vmin] h-[40vmin] md:w-[45vmin] md:h-[45vmin] max-w-[340px] max-h-[340px] rounded-lg shadow-2xl transition-all duration-700 bg-gray-800 flex items-center justify-center z-20 border-t border-l border-white/20 overflow-hidden ${currentRadioTrack ? 'scale-100 rotate-[-2deg]' : 'scale-95 grayscale opacity-80'}`}>
                           {currentRadioTrack ? (
                               <div className={`absolute inset-0 bg-gradient-to-br ${currentRadioTrack.colorFrom} ${currentRadioTrack.colorTo} p-0 flex flex-col justify-between`}>
                                    
@@ -1506,20 +1506,20 @@ const App: React.FC = () => {
                                    {/* Overlay Gradient for Text Readability */}
                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
 
-                                   <div className="flex justify-between items-start z-10 p-6">
-                                       <span className="text-white/60 font-black text-xs tracking-[0.2em] border border-white/40 px-2 py-1 rounded backdrop-blur-sm">STEREO</span>
-                                       <div className="text-5xl filter drop-shadow-md animate-pulse">{currentRadioTrack.icon}</div>
+                                   <div className="flex justify-between items-start z-10 p-[2vmin] md:p-6">
+                                       <span className="text-white/60 font-black text-[1.5vmin] md:text-xs tracking-[0.2em] border border-white/40 px-2 py-1 rounded backdrop-blur-sm">STEREO</span>
+                                       <div className="text-[4vmin] md:text-5xl filter drop-shadow-md animate-pulse">{currentRadioTrack.icon}</div>
                                    </div>
                                    
-                                   <div className="z-10 p-6">
-                                       <h1 className="text-4xl font-black text-white leading-none mb-2 drop-shadow-md break-words">{currentRadioTrack.title}</h1>
-                                       <p className="text-white/80 font-bold uppercase tracking-widest text-sm">{currentRadioTrack.artist}</p>
+                                   <div className="z-10 p-[2vmin] md:p-6">
+                                       <h1 className="text-[3.5vmin] md:text-4xl font-black text-white leading-none mb-[0.5vmin] md:mb-2 drop-shadow-md break-words line-clamp-2">{currentRadioTrack.title}</h1>
+                                       <p className="text-white/80 font-bold uppercase tracking-widest text-[2vmin] md:text-sm truncate">{currentRadioTrack.artist}</p>
                                    </div>
                               </div>
                           ) : (
                               <div className="flex flex-col items-center justify-center text-gray-500 gap-2">
-                                  <span className="text-6xl opacity-30">💿</span>
-                                  <span className="font-bold tracking-widest text-sm">NO DISC</span>
+                                  <span className="text-[8vmin] md:text-6xl opacity-30">💿</span>
+                                  <span className="font-bold tracking-widest text-[2vmin] md:text-sm">NO DISC</span>
                               </div>
                           )}
                           
@@ -1529,28 +1529,28 @@ const App: React.FC = () => {
                   </div>
 
                   {/* NOW PLAYING BAR (Bottom Overlay) */}
-                  <div className="absolute bottom-0 w-full bg-black/40 backdrop-blur-md border-t border-white/10 p-4 flex items-center justify-center gap-3 z-30">
-                       <div className={`w-3 h-3 rounded-full ${currentRadioTrack ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div>
-                       <p className="text-white font-mono text-sm tracking-wide">
+                  <div className="absolute bottom-0 w-full bg-black/40 backdrop-blur-md border-t border-white/10 p-[2vmin] md:p-4 flex items-center justify-center gap-[1.5vmin] md:gap-3 z-30">
+                       <div className={`w-[2vmin] h-[2vmin] md:w-[12px] md:h-[12px] rounded-full ${currentRadioTrack ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></div>
+                       <p className="text-white font-mono text-[2vmin] md:text-sm tracking-wide truncate">
                           {currentRadioTrack ? `PLAYING: ${currentRadioTrack.title.toUpperCase()}` : 'WAITING FOR INPUT...'}
                        </p>
                   </div>
               </div>
 
               {/* RIGHT SIDE: TRACK LIST */}
-              <div className="w-[45%] bg-[#1f2937] p-8 flex flex-col relative border-l border-[#374151]">
-                  <div className="flex items-center justify-between mb-8 border-b border-gray-700 pb-4">
-                     <h2 className="text-white font-black text-3xl tracking-widest drop-shadow-md">{t.radio_title}</h2>
-                     <span className="text-2xl animate-pulse">📻</span>
+              <div className="w-full md:w-[45%] h-[55%] md:h-full bg-[#1f2937] p-[3vmin] md:p-8 flex flex-col relative border-t md:border-t-0 md:border-l border-[#374151]">
+                  <div className="flex items-center justify-between mb-[2vmin] md:mb-8 border-b border-gray-700 pb-[1.5vmin] md:pb-4">
+                     <h2 className="text-white font-black text-[4vmin] md:text-3xl tracking-widest drop-shadow-md">{t.radio_title}</h2>
+                     <span className="text-[4vmin] md:text-2xl animate-pulse">📻</span>
                   </div>
 
-                  <div className="flex-1 overflow-y-auto pr-2 space-y-4 custom-scrollbar">
+                  <div className="flex-1 overflow-y-auto pr-2 space-y-[2vmin] md:space-y-4 custom-scrollbar">
                      {Object.entries(RADIO_TRACKS).map(([key, track]: [string, any], index: number) => (
                         <button
                            key={key}
                            id={`radio-item-${index}`}
                            onClick={() => handlePlayTrack(key)}
-                           className={`w-full text-left p-4 rounded-xl flex items-center transition-all duration-300 group border relative overflow-hidden
+                           className={`w-full text-left p-[2vmin] md:p-4 rounded-xl flex items-center transition-all duration-300 group border relative overflow-hidden
                              ${radioTrackKey === key 
                                ? `bg-gradient-to-r ${track.colorFrom} ${track.colorTo} border-transparent shadow-[0_0_20px_rgba(0,0,0,0.4)] translate-x-2` 
                                : 'bg-[#2d3748] border-gray-600 hover:bg-[#4a5568] hover:border-gray-400'
@@ -1559,28 +1559,28 @@ const App: React.FC = () => {
                            `}
                         >
                            {/* Icon Box with Image if available */}
-                           <div className={`w-14 h-14 rounded-lg flex items-center justify-center text-3xl shadow-sm mr-5 overflow-hidden relative ${radioTrackKey === key ? 'bg-white/20' : 'bg-black/20'}`}>
+                           <div className={`w-[8vmin] h-[8vmin] md:w-[56px] md:h-[56px] rounded-lg flex items-center justify-center text-[4vmin] md:text-3xl shadow-sm mr-[2vmin] md:mr-5 overflow-hidden relative flex-shrink-0 ${radioTrackKey === key ? 'bg-white/20' : 'bg-black/20'}`}>
                               <img src={track.cover} className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" alt="mini cover" />
                               <span className="relative z-10 drop-shadow-md">{track.icon}</span>
                            </div>
                            
                            {/* Text Info */}
-                           <div className="flex-1 z-10">
-                              <p className={`font-black text-xl leading-none mb-1 ${radioTrackKey === key ? 'text-white' : 'text-gray-200'}`}>
+                           <div className="flex-1 z-10 min-w-0">
+                              <p className={`font-black text-[2.5vmin] md:text-xl leading-none mb-[0.5vmin] md:mb-1 truncate ${radioTrackKey === key ? 'text-white' : 'text-gray-200'}`}>
                                 {track.title}
                               </p>
-                              <p className={`text-xs font-bold uppercase tracking-wider ${radioTrackKey === key ? 'text-white/80' : 'text-gray-400'}`}>
+                              <p className={`text-[1.5vmin] md:text-xs font-bold uppercase tracking-wider truncate ${radioTrackKey === key ? 'text-white/80' : 'text-gray-400'}`}>
                                 {track.artist}
                               </p>
                            </div>
 
                            {/* Equalizer Animation if playing */}
                            {radioTrackKey === key && (
-                             <div className="flex items-end gap-[3px] h-6 ml-3">
-                                <div className="w-1.5 bg-white animate-[bounce_0.8s_infinite] h-3 rounded-t-sm"></div>
-                                <div className="w-1.5 bg-white animate-[bounce_1.2s_infinite] h-6 rounded-t-sm"></div>
-                                <div className="w-1.5 bg-white animate-[bounce_0.6s_infinite] h-2 rounded-t-sm"></div>
-                                <div className="w-1.5 bg-white animate-[bounce_1.0s_infinite] h-4 rounded-t-sm"></div>
+                             <div className="flex items-end gap-[2px] md:gap-[3px] h-[3vmin] md:h-6 ml-[1.5vmin] md:ml-3 flex-shrink-0">
+                                <div className="w-[0.6vmin] md:w-1.5 bg-white animate-[bounce_0.8s_infinite] h-[1.5vmin] md:h-3 rounded-t-sm"></div>
+                                <div className="w-[0.6vmin] md:w-1.5 bg-white animate-[bounce_1.2s_infinite] h-[3vmin] md:h-6 rounded-t-sm"></div>
+                                <div className="w-[0.6vmin] md:w-1.5 bg-white animate-[bounce_0.6s_infinite] h-[1.2vmin] md:h-2 rounded-t-sm"></div>
+                                <div className="w-[0.6vmin] md:w-1.5 bg-white animate-[bounce_1.0s_infinite] h-[2vmin] md:h-4 rounded-t-sm"></div>
                              </div>
                            )}
                         </button>
@@ -1588,10 +1588,10 @@ const App: React.FC = () => {
                   </div>
 
                   {/* BOTTOM CONTROLS */}
-                  <div className="mt-6 pt-6 border-t border-gray-700">
+                  <div className="mt-[2vmin] md:mt-6 pt-[2vmin] md:pt-6 border-t border-gray-700">
                      <button 
                        onClick={() => handlePlayTrack(null)}
-                       className={`w-full py-5 rounded-2xl font-black text-white text-lg uppercase tracking-widest transition-all shadow-lg flex items-center justify-center gap-3
+                       className={`w-full py-[2vmin] md:py-5 rounded-2xl font-black text-white text-[2.5vmin] md:text-lg uppercase tracking-widest transition-all shadow-lg flex items-center justify-center gap-[1.5vmin] md:gap-3
                          ${currentRadioTrack 
                             ? 'bg-red-500 hover:bg-red-600 hover:shadow-red-500/30 hover:scale-[1.02]' 
                             : 'bg-gray-700 cursor-not-allowed opacity-50'
@@ -1600,7 +1600,7 @@ const App: React.FC = () => {
                        `}
                        disabled={!currentRadioTrack}
                      >
-                        <div className="w-4 h-4 bg-white rounded-sm"></div>
+                        <div className="w-[2vmin] h-[2vmin] md:w-4 md:h-4 bg-white rounded-sm"></div>
                         {t.radio_stop}
                      </button>
                   </div>
@@ -1761,15 +1761,15 @@ const App: React.FC = () => {
       {/* PAUSE MENU OVERLAY */}
       {gameState === GameState.PAUSED && (
         <div className="absolute inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm pointer-events-auto">
-          <div className="min-h-full flex items-center justify-center p-[4vmin]">
-             <div className="bg-[#fff8e7] rounded-[4vmin] border-[1vmin] border-[#d7ccc8] p-[6vmin] w-[90vw] max-w-[70vmin] text-center shadow-2xl">
-                <h2 className="text-[6vmin] font-black text-[#5d4037] mb-[6vmin] tracking-widest">{t.pause_title}</h2>
-                <div className="flex flex-col gap-[3vmin]">
+           <div className="min-h-full flex items-center justify-center p-[2vmin]">
+             <div className="bg-[#fff8e7] rounded-[4vmin] border-[1vmin] border-[#d7ccc8] p-[4vmin] w-[90vw] max-w-[400px] text-center shadow-2xl my-auto">
+                <h2 className="text-[5vmin] md:text-[4vmin] font-black text-[#5d4037] mb-[3vmin] tracking-widest">{t.pause_title}</h2>
+                <div className="flex flex-col gap-[2vmin]">
                    {pauseMenuActions.map((item, idx) => (
                       <button 
                           key={idx}
                           onClick={item.action} 
-                          className={`px-[6vmin] py-[2.5vmin] text-[3.5vmin] font-bold rounded-[3vmin] border-[0.8vmin] shadow-md active:translate-y-1 transition-all
+                          className={`px-[4vmin] py-[2vmin] text-[3.5vmin] md:text-[2.5vmin] font-bold rounded-[2vmin] border-[0.6vmin] shadow-md active:translate-y-1 transition-all
                              ${getFocusClass(idx)}
                              ${idx === 0 ? 'bg-[#b5ead7] text-[#4a7c68] border-[#88bba6]' : 
                                idx === 1 ? 'bg-[#ffdac1] text-[#b38061] border-[#dcbba3]' : 
@@ -1790,29 +1790,29 @@ const App: React.FC = () => {
       {/* LEVEL SELECT SCREEN */}
       {gameState === GameState.LEVEL_SELECT && (
         <div className="absolute inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm pointer-events-auto">
-          <div className="min-h-full flex items-center justify-center p-[4vmin]">
-            <div className="bg-[#fff8e7] rounded-[4vmin] border-[1vmin] border-[#d7ccc8] p-[6vmin] w-[90vw] max-w-[100vmin] text-center shadow-2xl">
-               <h2 className="text-[6vmin] font-black text-[#5d4037] mb-[6vmin] tracking-widest">{t.level_select_title}</h2>
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-[3vmin] mb-[6vmin]">
+          <div className="min-h-full flex items-center justify-center p-[2vmin]">
+            <div className="bg-[#fff8e7] rounded-[4vmin] border-[1vmin] border-[#d7ccc8] p-[4vmin] w-[90vw] max-w-[600px] text-center shadow-2xl">
+               <h2 className="text-[5vmin] md:text-[4vmin] font-black text-[#5d4037] mb-[4vmin] tracking-widest">{t.level_select_title}</h2>
+               <div className="grid grid-cols-1 md:grid-cols-3 gap-[2vmin] mb-[4vmin]">
                  {LEVELS.map((level, idx) => (
                    <button 
                     key={level.id} 
                     onClick={(e) => handleSelectLevel(e, idx)}
-                    className={`p-[4vmin] rounded-[3vmin] border-[0.8vmin] shadow-md transition-all active:scale-95 flex flex-col items-center gap-[2vmin] group
+                    className={`p-[3vmin] rounded-[3vmin] border-[0.8vmin] shadow-md transition-all active:scale-95 flex flex-col items-center gap-[1.5vmin] group
                       ${idx === currentLevelIdx ? 'bg-[#ffdac1] border-[#dcbba3]' : 'bg-white border-[#e5e7eb] hover:border-[#b5ead7]'}
                       ${getFocusClass(idx)}
                     `}
                    >
-                      <div className="text-[6vmin] mb-[1vmin] group-hover:scale-110 transition-transform">
+                      <div className="text-[5vmin] mb-[0.5vmin] group-hover:scale-110 transition-transform">
                         {level.timeOfDay === 'night' ? '🌙' : (level.timeOfDay === 'sunset' ? '🌅' : '☀️')}
                       </div>
-                      <span className="text-[3vmin] font-black text-[#5d4037]">{t[level.titleKey]}</span>
+                      <span className="text-[2.5vmin] md:text-[2vmin] font-black text-[#5d4037]">{t[level.titleKey]}</span>
                    </button>
                  ))}
                </div>
                <button 
                   onClick={handleBackToPause} 
-                  className={`px-[6vmin] py-[2.5vmin] bg-[#e5e7eb] text-[#5d4037] text-[3.5vmin] font-bold rounded-[3vmin] border-[0.8vmin] border-[#d1d5db] shadow-md active:translate-y-1 transition-all ${getFocusClass(LEVELS.length)}`}
+                  className={`px-[5vmin] py-[2vmin] bg-[#e5e7eb] text-[#5d4037] text-[3vmin] md:text-[2.5vmin] font-bold rounded-[2vmin] border-[0.6vmin] border-[#d1d5db] shadow-md active:translate-y-1 transition-all ${getFocusClass(LEVELS.length)}`}
                >
                   {t.back}
                </button>
@@ -1824,15 +1824,15 @@ const App: React.FC = () => {
       {/* STORY MODE OVERLAY */}
       {gameState === GameState.STORY && (
         <div className="absolute inset-0 z-40 overflow-y-auto bg-[#5d4037]/90 backdrop-blur-sm pointer-events-auto">
-          <div className="min-h-full flex items-center justify-center p-[4vmin]">
-             <div className="bg-[#fff8e7] rounded-[4vmin] border-[1vmin] border-[#d7ccc8] p-[6vmin] w-[90vw] max-w-[90vmin] text-center shadow-2xl transform rotate-1">
-                <h2 className="text-[6vmin] font-black text-[#5d4037] mb-[4vmin]">{t[LEVELS[currentLevelIdx].titleKey]}</h2>
-                <p className="text-[3.5vmin] text-[#8d6e63] font-bold whitespace-pre-line mb-[5vmin] leading-relaxed">
+          <div className="min-h-full flex items-center justify-center p-[2vmin]">
+             <div className="bg-[#fff8e7] rounded-[4vmin] border-[1vmin] border-[#d7ccc8] p-[5vmin] w-[90vw] max-w-[600px] text-center shadow-2xl transform rotate-1">
+                <h2 className="text-[5vmin] md:text-[4vmin] font-black text-[#5d4037] mb-[3vmin]">{t[LEVELS[currentLevelIdx].titleKey]}</h2>
+                <p className="text-[3vmin] md:text-[2.5vmin] text-[#8d6e63] font-bold whitespace-pre-line mb-[4vmin] leading-relaxed">
                   {t[`story_l${LEVELS[currentLevelIdx].id}`]}
                 </p>
                 <button 
                   onClick={startLevel}
-                  className={`px-[8vmin] py-[3vmin] bg-[#b5ead7] hover:bg-[#a3d9c5] text-[#4a7c68] text-[4vmin] font-black rounded-full border-b-[1vmin] border-[#88bba6] active:border-b-0 active:translate-y-2 transition-all shadow-lg ${getFocusClass(0)}`}
+                  className={`px-[6vmin] py-[2.5vmin] bg-[#b5ead7] hover:bg-[#a3d9c5] text-[#4a7c68] text-[3.5vmin] md:text-[3vmin] font-black rounded-full border-b-[0.8vmin] border-[#88bba6] active:border-b-0 active:translate-y-2 transition-all shadow-lg ${getFocusClass(0)}`}
                 >
                   {t.story_continue_btn}
                 </button>
@@ -1851,73 +1851,73 @@ const App: React.FC = () => {
               </div>
               
               {/* SUBMENU FOR FREE ROAM OR MAIN */}
-              <div className="bg-white/90 backdrop-blur rounded-[4vmin] border-[1vmin] border-[#e2f0cb] p-[5vmin] shadow-[0_20px_50px_rgba(93,64,55,0.15)] text-center flex flex-col items-center gap-[3vmin] w-[90vw] max-w-[80vmin] z-10 transform rotate-1 transition-all duration-300">
+              <div className="bg-white/90 backdrop-blur rounded-[4vmin] border-[1vmin] border-[#e2f0cb] p-[5vmin] shadow-[0_20px_50px_rgba(93,64,55,0.15)] text-center flex flex-col items-center gap-[3vmin] w-[90vw] max-w-[600px] z-10 transform rotate-1 transition-all duration-300">
                {!showRoamSelect ? (
                  <>
                     <div className="bg-[#fff8e7] p-[4vmin] rounded-[3vmin] border-dashed border-2 border-[#d7ccc8] w-full">
-                        <p className="text-[#8d6e63] text-[3vmin] font-medium leading-relaxed whitespace-pre-line">{t.intro}</p>
+                        <p className="text-[#8d6e63] text-[3vmin] md:text-[2.5vmin] font-medium leading-relaxed whitespace-pre-line">{t.intro}</p>
                     </div>
                     <div className="flex gap-[3vmin] justify-center items-center w-full">
                         <div className="flex gap-[1vmin] bg-[#f5f5f5] p-[1vmin] rounded-full">
-                            <button onClick={() => setLanguageAndClick('es')} className={`px-[3vmin] py-[1.5vmin] text-[2.5vmin] rounded-full font-bold transition-all ${language === 'es' ? 'bg-white text-[#5d4037] shadow-md scale-105' : 'text-gray-400 hover:text-gray-600'} ${getFocusClass(2)}`}>ES</button>
-                            <button onClick={() => setLanguageAndClick('fr')} className={`px-[3vmin] py-[1.5vmin] text-[2.5vmin] rounded-full font-bold transition-all ${language === 'fr' ? 'bg-white text-[#5d4037] shadow-md scale-105' : 'text-gray-400 hover:text-gray-600'} ${getFocusClass(3)}`}>FR</button>
+                            <button onClick={() => setLanguageAndClick('es')} className={`px-[3vmin] py-[1.5vmin] text-[2.5vmin] md:text-[2vmin] rounded-full font-bold transition-all ${language === 'es' ? 'bg-white text-[#5d4037] shadow-md scale-105' : 'text-gray-400 hover:text-gray-600'} ${getFocusClass(2)}`}>ES</button>
+                            <button onClick={() => setLanguageAndClick('fr')} className={`px-[3vmin] py-[1.5vmin] text-[2.5vmin] md:text-[2vmin] rounded-full font-bold transition-all ${language === 'fr' ? 'bg-white text-[#5d4037] shadow-md scale-105' : 'text-gray-400 hover:text-gray-600'} ${getFocusClass(3)}`}>FR</button>
                         </div>
-                        <button onClick={toggleMusic} className={`w-[8vmin] h-[8vmin] flex items-center justify-center rounded-full transition-all border-[0.5vmin] ${!isMusicMuted ? 'bg-[#ffdac1] text-[#5d4037] border-[#ffb7b2] shadow-sm' : 'bg-gray-100 text-gray-400 border-gray-200'} ${getFocusClass(4)}`}>
+                        <button onClick={toggleMusic} className={`w-[8vmin] h-[8vmin] max-w-[48px] max-h-[48px] flex items-center justify-center rounded-full transition-all border-[0.5vmin] ${!isMusicMuted ? 'bg-[#ffdac1] text-[#5d4037] border-[#ffb7b2] shadow-sm' : 'bg-gray-100 text-gray-400 border-gray-200'} ${getFocusClass(4)}`}>
                             {isMusicMuted ? <MusicIconOff /> : <MusicIconOn />}
                         </button>
                     </div>
                     <div className="flex w-full gap-[2vmin]">
-                        <button onClick={startToStory} className={`flex-1 py-[3vmin] bg-[#ff9aa2] hover:bg-[#ff808b] text-white text-[4vmin] font-black rounded-[3vmin] border-b-[1vmin] border-[#e57373] active:border-b-0 active:translate-y-2 transition-all shadow-xl flex items-center justify-center gap-[2vmin] group ${getFocusClass(0)}`}>
+                        <button onClick={startToStory} className={`flex-1 py-[3vmin] bg-[#ff9aa2] hover:bg-[#ff808b] text-white text-[4vmin] md:text-[3vmin] font-black rounded-[3vmin] border-b-[1vmin] border-[#e57373] active:border-b-0 active:translate-y-2 transition-all shadow-xl flex items-center justify-center gap-[2vmin] group ${getFocusClass(0)}`}>
                             <span>{t.start_btn}</span>
                             <span className="group-hover:rotate-12 transition-transform">✨</span>
                         </button>
-                        <button onClick={() => { audioManager.play('click'); setShowRoamSelect(true); }} className={`px-[4vmin] py-[3vmin] bg-[#c7ceea] hover:bg-[#b0badb] text-[#5d4037] text-[3vmin] font-black rounded-[3vmin] border-b-[1vmin] border-[#9aa6c4] active:border-b-0 active:translate-y-2 transition-all shadow-xl ${getFocusClass(1)}`}>
+                        <button onClick={() => { audioManager.play('click'); setShowRoamSelect(true); }} className={`px-[4vmin] py-[3vmin] bg-[#c7ceea] hover:bg-[#b0badb] text-[#5d4037] text-[3vmin] md:text-[2.5vmin] font-black rounded-[3vmin] border-b-[1vmin] border-[#9aa6c4] active:border-b-0 active:translate-y-2 transition-all shadow-xl ${getFocusClass(1)}`}>
                             {t.roam_btn}
                         </button>
                     </div>
                  </>
                ) : (
                   <>
-                     <h3 className="text-2xl font-black text-[#5d4037] mb-4">{t.roam_title}</h3>
-                     <div className="flex flex-col gap-4 w-full">
-                        <button onClick={() => startFreeRoam('day')} className={`py-4 bg-[#fff8e1] hover:bg-[#ffe082] text-[#f57f17] text-xl font-bold rounded-2xl border-b-4 border-[#ffb300] active:border-b-0 transition-all shadow-md ${getFocusClass(0)}`}>
+                     <h3 className="text-[5vmin] md:text-[4vmin] font-black text-[#5d4037] mb-[2vmin]">{t.roam_title}</h3>
+                     <div className="flex flex-col gap-[2vmin] w-full">
+                        <button onClick={() => startFreeRoam('day')} className={`py-[3vmin] bg-[#fff8e1] hover:bg-[#ffe082] text-[#f57f17] text-[3.5vmin] md:text-[3vmin] font-bold rounded-[3vmin] border-b-[0.8vmin] border-[#ffb300] active:border-b-0 active:translate-y-1 transition-all shadow-md ${getFocusClass(0)}`}>
                             ☀️ {t.roam_day}
                         </button>
-                        <button onClick={() => startFreeRoam('sunset')} className={`py-4 bg-[#ffccbc] hover:bg-[#ffab91] text-[#d84315] text-xl font-bold rounded-2xl border-b-4 border-[#ff8a65] active:border-b-0 transition-all shadow-md ${getFocusClass(1)}`}>
+                        <button onClick={() => startFreeRoam('sunset')} className={`py-[3vmin] bg-[#ffccbc] hover:bg-[#ffab91] text-[#d84315] text-[3.5vmin] md:text-[3vmin] font-bold rounded-[3vmin] border-b-[0.8vmin] border-[#ff8a65] active:border-b-0 active:translate-y-1 transition-all shadow-md ${getFocusClass(1)}`}>
                             🌅 {t.roam_sunset}
                         </button>
-                        <button onClick={() => startFreeRoam('night')} className={`py-4 bg-[#c5cae9] hover:bg-[#9fa8da] text-[#283593] text-xl font-bold rounded-2xl border-b-4 border-[#7986cb] active:border-b-0 transition-all shadow-md ${getFocusClass(2)}`}>
+                        <button onClick={() => startFreeRoam('night')} className={`py-[3vmin] bg-[#c5cae9] hover:bg-[#9fa8da] text-[#283593] text-[3.5vmin] md:text-[3vmin] font-bold rounded-[3vmin] border-b-[0.8vmin] border-[#7986cb] active:border-b-0 active:translate-y-1 transition-all shadow-md ${getFocusClass(2)}`}>
                             🌙 {t.roam_night}
                         </button>
-                        <button onClick={() => { audioManager.play('click'); setShowRoamSelect(false); }} className={`mt-4 text-[#8d6e63] font-bold underline ${getFocusClass(3)}`}>
+                        <button onClick={() => { audioManager.play('click'); setShowRoamSelect(false); }} className={`mt-[2vmin] text-[#8d6e63] text-[3vmin] md:text-[2.5vmin] font-bold underline ${getFocusClass(3)}`}>
                             {t.back}
                         </button>
                      </div>
                   </>
                )}
+              </div>
             </div>
           </div>
-        </div>
         </div>
       )}
 
       {/* End Screen Overlay */}
       {(gameState === GameState.WON || gameState === GameState.LOST) && (
         <div className="absolute inset-0 z-30 overflow-y-auto bg-black/80 backdrop-blur-md pointer-events-auto">
-          <div className="min-h-full flex items-center justify-center p-[4vmin]">
-            <div className={`p-[8vmin] rounded-[5vmin] border-[1vmin] text-center shadow-2xl transform ${gameState === GameState.WON ? 'bg-[#d8f3dc] border-[#95d5b2] rotate-1' : 'bg-[#fad2e1] border-[#f28482] -rotate-1'} w-[90vw] max-w-[80vmin]`}>
-              <h1 className={`text-[8vmin] font-black mb-[4vmin] ${gameState === GameState.WON ? 'text-[#40916c]' : 'text-[#e5383b]'} drop-shadow-sm`}>
+          <div className="min-h-full flex items-center justify-center p-[2vmin]">
+            <div className={`p-[6vmin] rounded-[4vmin] border-[1vmin] text-center shadow-2xl transform ${gameState === GameState.WON ? 'bg-[#d8f3dc] border-[#95d5b2] rotate-1' : 'bg-[#fad2e1] border-[#f28482] -rotate-1'} w-[90vw] max-w-[600px]`}>
+              <h1 className={`text-[6vmin] md:text-[5vmin] font-black mb-[3vmin] ${gameState === GameState.WON ? 'text-[#40916c]' : 'text-[#e5383b]'} drop-shadow-sm`}>
                 {gameState === GameState.WON ? (isGameFinished ? t.win_game_title : t.win_title) : t.lose_title}
               </h1>
-              <div className="flex flex-col items-center mb-[6vmin]">
-                <span className="text-[#5d4037] text-[3.5vmin] font-bold mb-[2vmin]">{t.score_label}</span>
-                <div className="bg-white px-[6vmin] py-[3vmin] rounded-[3vmin] border-[0.8vmin] border-[#5d4037] shadow-inner">
-                   <span className="text-[7vmin] font-black text-[#5d4037]">{score} / {totalItems}</span>
+              <div className="flex flex-col items-center mb-[4vmin]">
+                <span className="text-[#5d4037] text-[3vmin] md:text-[2.5vmin] font-bold mb-[1.5vmin]">{t.score_label}</span>
+                <div className="bg-white px-[4vmin] py-[2vmin] rounded-[2vmin] border-[0.6vmin] border-[#5d4037] shadow-inner">
+                   <span className="text-[5vmin] md:text-[4vmin] font-black text-[#5d4037]">{score} / {totalItems}</span>
                 </div>
               </div>
               <button 
                 onClick={handleLevelCompleteOrRetry}
-                className={`px-[8vmin] py-[3vmin] bg-white text-[#5d4037] hover:bg-[#fdf6e3] text-[4vmin] font-black rounded-full border-[0.8vmin] border-[#5d4037] shadow-[0_6px_0_#5d4037] active:shadow-none active:translate-y-1.5 transition-all ${getFocusClass(0)}`}
+                className={`px-[6vmin] py-[2.5vmin] bg-white text-[#5d4037] hover:bg-[#fdf6e3] text-[3.5vmin] md:text-[3vmin] font-black rounded-full border-[0.6vmin] border-[#5d4037] shadow-[0_4px_0_#5d4037] active:shadow-none active:translate-y-1 transition-all ${getFocusClass(0)}`}
               >
                 {gameState === GameState.WON 
                    ? (isGameFinished ? t.retry_game_win : t.retry_win) 
