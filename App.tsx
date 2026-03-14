@@ -244,6 +244,15 @@ const App: React.FC = () => {
   const [gameState, setGameState] = useState<GameState>(GameState.MENU);
   const [isMobile, setIsMobile] = useState(false);
   const [isGamepadConnected, setIsGamepadConnected] = useState(false);
+  const [vmin, setVmin] = useState(Math.min(window.innerWidth, window.innerHeight));
+
+  useEffect(() => {
+    const handleResize = () => setVmin(Math.min(window.innerWidth, window.innerHeight));
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const proportionalScale = vmin / 1000;
   
   // Track state before pausing
   const pausedStateRef = useRef<GameState>(GameState.PLAYING);
@@ -1631,8 +1640,8 @@ const App: React.FC = () => {
       {/* HUD & UI LAYERS */}
       {(gameState === GameState.PLAYING || gameState === GameState.PAUSED || gameState === GameState.LEVEL_SELECT || gameState === GameState.FREE_ROAM) && (
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-8 left-8 z-20 pointer-events-auto transform scale-75 origin-top-left">
-             <CozyLogo minimized={true} />
+          <div className="absolute top-[4vmin] left-[4vmin] z-20 pointer-events-auto origin-top-left">
+             <CozyLogo scale={proportionalScale * 0.8} minimized={true} />
           </div>
           {/* CROSSHAIR - HIDE ON MOBILE TO KEEP IT CLEAN OR SHOW SMALL DOT */}
           {(gameState === GameState.PLAYING || gameState === GameState.FREE_ROAM) && !isBookOpen && !isDrawerOpen && !isRadioOpen && !showCookingPrompt && <div id="crosshair"></div>}
@@ -1810,15 +1819,15 @@ const App: React.FC = () => {
 
       {/* STORY MODE OVERLAY */}
       {gameState === GameState.STORY && (
-        <div className="absolute inset-0 z-40 flex items-center justify-center bg-[#5d4037]/90 backdrop-blur-sm p-4 pointer-events-auto">
-           <div className="bg-[#fff8e7] rounded-[2rem] border-8 border-[#d7ccc8] p-10 max-w-2xl text-center shadow-2xl transform rotate-1">
-              <h2 className="text-4xl font-black text-[#5d4037] mb-6">{t[LEVELS[currentLevelIdx].titleKey]}</h2>
-              <p className="text-2xl text-[#8d6e63] font-bold whitespace-pre-line mb-8 leading-relaxed">
+        <div className="absolute inset-0 z-40 flex items-center justify-center bg-[#5d4037]/90 backdrop-blur-sm p-[4vmin] pointer-events-auto">
+           <div className="bg-[#fff8e7] rounded-[4vmin] border-[1vmin] border-[#d7ccc8] p-[6vmin] w-[90vw] max-w-[90vmin] text-center shadow-2xl transform rotate-1">
+              <h2 className="text-[6vmin] font-black text-[#5d4037] mb-[4vmin]">{t[LEVELS[currentLevelIdx].titleKey]}</h2>
+              <p className="text-[3.5vmin] text-[#8d6e63] font-bold whitespace-pre-line mb-[5vmin] leading-relaxed">
                 {t[`story_l${LEVELS[currentLevelIdx].id}`]}
               </p>
               <button 
                 onClick={startLevel}
-                className={`px-10 py-4 bg-[#b5ead7] hover:bg-[#a3d9c5] text-[#4a7c68] text-2xl font-black rounded-full border-b-8 border-[#88bba6] active:border-b-0 active:translate-y-2 transition-all shadow-lg ${getFocusClass(0)}`}
+                className={`px-[8vmin] py-[3vmin] bg-[#b5ead7] hover:bg-[#a3d9c5] text-[#4a7c68] text-[4vmin] font-black rounded-full border-b-[1vmin] border-[#88bba6] active:border-b-0 active:translate-y-2 transition-all shadow-lg ${getFocusClass(0)}`}
               >
                 {t.story_continue_btn}
               </button>
@@ -1830,33 +1839,33 @@ const App: React.FC = () => {
       {gameState === GameState.MENU && (
         <div className="absolute inset-0 z-30 flex items-center justify-center bg-[#fdf6e3]/80 backdrop-blur-sm overflow-hidden pointer-events-auto">
            {/* Removed Background emojis */}
-          <div className="relative flex flex-col items-center gap-10 max-w-4xl w-full p-4">
-            <div className="z-20 transform hover:scale-105 transition-transform duration-500 pt-10">
-               <CozyLogo scale={1.3} />
+          <div className="relative flex flex-col items-center gap-[4vmin] w-full p-[4vmin]">
+            <div className="z-20 transform hover:scale-105 transition-transform duration-500 pt-[4vmin]">
+               <CozyLogo scale={proportionalScale * 1.8} />
             </div>
             
             {/* SUBMENU FOR FREE ROAM OR MAIN */}
-            <div className="bg-white/90 backdrop-blur rounded-[3rem] border-8 border-[#e2f0cb] p-10 shadow-[0_20px_50px_rgba(93,64,55,0.15)] text-center flex flex-col items-center gap-6 w-full max-w-lg z-10 transform rotate-1 mt-6 transition-all duration-300">
+            <div className="bg-white/90 backdrop-blur rounded-[4vmin] border-[1vmin] border-[#e2f0cb] p-[5vmin] shadow-[0_20px_50px_rgba(93,64,55,0.15)] text-center flex flex-col items-center gap-[3vmin] w-[90vw] max-w-[80vmin] z-10 transform rotate-1 mt-[3vmin] transition-all duration-300">
                {!showRoamSelect ? (
                  <>
-                    <div className="bg-[#fff8e7] p-6 rounded-2xl border-dashed border-2 border-[#d7ccc8] w-full">
-                        <p className="text-[#8d6e63] text-lg font-medium leading-relaxed whitespace-pre-line">{t.intro}</p>
+                    <div className="bg-[#fff8e7] p-[4vmin] rounded-[3vmin] border-dashed border-2 border-[#d7ccc8] w-full">
+                        <p className="text-[#8d6e63] text-[3vmin] font-medium leading-relaxed whitespace-pre-line">{t.intro}</p>
                     </div>
-                    <div className="flex gap-4 justify-center items-center w-full">
-                        <div className="flex gap-2 bg-[#f5f5f5] p-2 rounded-full">
-                            <button onClick={() => setLanguageAndClick('es')} className={`px-4 py-2 rounded-full font-bold transition-all ${language === 'es' ? 'bg-white text-[#5d4037] shadow-md scale-105' : 'text-gray-400 hover:text-gray-600'} ${getFocusClass(2)}`}>ES</button>
-                            <button onClick={() => setLanguageAndClick('fr')} className={`px-4 py-2 rounded-full font-bold transition-all ${language === 'fr' ? 'bg-white text-[#5d4037] shadow-md scale-105' : 'text-gray-400 hover:text-gray-600'} ${getFocusClass(3)}`}>FR</button>
+                    <div className="flex gap-[3vmin] justify-center items-center w-full">
+                        <div className="flex gap-[1vmin] bg-[#f5f5f5] p-[1vmin] rounded-full">
+                            <button onClick={() => setLanguageAndClick('es')} className={`px-[3vmin] py-[1.5vmin] text-[2.5vmin] rounded-full font-bold transition-all ${language === 'es' ? 'bg-white text-[#5d4037] shadow-md scale-105' : 'text-gray-400 hover:text-gray-600'} ${getFocusClass(2)}`}>ES</button>
+                            <button onClick={() => setLanguageAndClick('fr')} className={`px-[3vmin] py-[1.5vmin] text-[2.5vmin] rounded-full font-bold transition-all ${language === 'fr' ? 'bg-white text-[#5d4037] shadow-md scale-105' : 'text-gray-400 hover:text-gray-600'} ${getFocusClass(3)}`}>FR</button>
                         </div>
-                        <button onClick={toggleMusic} className={`w-12 h-12 flex items-center justify-center rounded-full transition-all border-2 ${!isMusicMuted ? 'bg-[#ffdac1] text-[#5d4037] border-[#ffb7b2] shadow-sm' : 'bg-gray-100 text-gray-400 border-gray-200'} ${getFocusClass(4)}`}>
+                        <button onClick={toggleMusic} className={`w-[8vmin] h-[8vmin] flex items-center justify-center rounded-full transition-all border-[0.5vmin] ${!isMusicMuted ? 'bg-[#ffdac1] text-[#5d4037] border-[#ffb7b2] shadow-sm' : 'bg-gray-100 text-gray-400 border-gray-200'} ${getFocusClass(4)}`}>
                             {isMusicMuted ? <MusicIconOff /> : <MusicIconOn />}
                         </button>
                     </div>
-                    <div className="flex w-full gap-3">
-                        <button onClick={startToStory} className={`flex-1 py-5 bg-[#ff9aa2] hover:bg-[#ff808b] text-white text-2xl font-black rounded-2xl border-b-8 border-[#e57373] active:border-b-0 active:translate-y-2 transition-all shadow-xl flex items-center justify-center gap-2 group ${getFocusClass(0)}`}>
+                    <div className="flex w-full gap-[2vmin]">
+                        <button onClick={startToStory} className={`flex-1 py-[3vmin] bg-[#ff9aa2] hover:bg-[#ff808b] text-white text-[4vmin] font-black rounded-[3vmin] border-b-[1vmin] border-[#e57373] active:border-b-0 active:translate-y-2 transition-all shadow-xl flex items-center justify-center gap-[2vmin] group ${getFocusClass(0)}`}>
                             <span>{t.start_btn}</span>
                             <span className="group-hover:rotate-12 transition-transform">✨</span>
                         </button>
-                        <button onClick={() => { audioManager.play('click'); setShowRoamSelect(true); }} className={`px-6 py-5 bg-[#c7ceea] hover:bg-[#b0badb] text-[#5d4037] text-xl font-black rounded-2xl border-b-8 border-[#9aa6c4] active:border-b-0 active:translate-y-2 transition-all shadow-xl ${getFocusClass(1)}`}>
+                        <button onClick={() => { audioManager.play('click'); setShowRoamSelect(true); }} className={`px-[4vmin] py-[3vmin] bg-[#c7ceea] hover:bg-[#b0badb] text-[#5d4037] text-[3vmin] font-black rounded-[3vmin] border-b-[1vmin] border-[#9aa6c4] active:border-b-0 active:translate-y-2 transition-all shadow-xl ${getFocusClass(1)}`}>
                             {t.roam_btn}
                         </button>
                     </div>
@@ -1887,20 +1896,20 @@ const App: React.FC = () => {
 
       {/* End Screen Overlay */}
       {(gameState === GameState.WON || gameState === GameState.LOST) && (
-        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md pointer-events-auto">
-          <div className={`p-12 rounded-[3rem] border-8 text-center shadow-2xl transform ${gameState === GameState.WON ? 'bg-[#d8f3dc] border-[#95d5b2] rotate-1' : 'bg-[#fad2e1] border-[#f28482] -rotate-1'}`}>
-            <h1 className={`text-6xl font-black mb-4 ${gameState === GameState.WON ? 'text-[#40916c]' : 'text-[#e5383b]'} drop-shadow-sm`}>
+        <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/80 backdrop-blur-md pointer-events-auto p-[4vmin]">
+          <div className={`p-[8vmin] rounded-[5vmin] border-[1vmin] text-center shadow-2xl transform ${gameState === GameState.WON ? 'bg-[#d8f3dc] border-[#95d5b2] rotate-1' : 'bg-[#fad2e1] border-[#f28482] -rotate-1'} w-[90vw] max-w-[80vmin]`}>
+            <h1 className={`text-[8vmin] font-black mb-[4vmin] ${gameState === GameState.WON ? 'text-[#40916c]' : 'text-[#e5383b]'} drop-shadow-sm`}>
               {gameState === GameState.WON ? (isGameFinished ? t.win_game_title : t.win_title) : t.lose_title}
             </h1>
-            <div className="flex flex-col items-center mb-8">
-              <span className="text-[#5d4037] text-xl font-bold mb-2">{t.score_label}</span>
-              <div className="bg-white px-8 py-4 rounded-2xl border-4 border-[#5d4037] shadow-inner">
-                 <span className="text-5xl font-black text-[#5d4037]">{score} / {totalItems}</span>
+            <div className="flex flex-col items-center mb-[6vmin]">
+              <span className="text-[#5d4037] text-[3.5vmin] font-bold mb-[2vmin]">{t.score_label}</span>
+              <div className="bg-white px-[6vmin] py-[3vmin] rounded-[3vmin] border-[0.8vmin] border-[#5d4037] shadow-inner">
+                 <span className="text-[7vmin] font-black text-[#5d4037]">{score} / {totalItems}</span>
               </div>
             </div>
             <button 
               onClick={handleLevelCompleteOrRetry}
-              className={`px-8 py-4 bg-white text-[#5d4037] hover:bg-[#fdf6e3] text-xl font-black rounded-full border-4 border-[#5d4037] shadow-[0_6px_0_#5d4037] active:shadow-none active:translate-y-1.5 transition-all ${getFocusClass(0)}`}
+              className={`px-[8vmin] py-[3vmin] bg-white text-[#5d4037] hover:bg-[#fdf6e3] text-[4vmin] font-black rounded-full border-[0.8vmin] border-[#5d4037] shadow-[0_6px_0_#5d4037] active:shadow-none active:translate-y-1.5 transition-all ${getFocusClass(0)}`}
             >
               {gameState === GameState.WON 
                  ? (isGameFinished ? t.retry_game_win : t.retry_win) 
